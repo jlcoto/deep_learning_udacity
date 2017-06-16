@@ -12502,7 +12502,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_batches</span><span class="p">(</span><span class="n">int_text</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">):</span>
@@ -12567,6 +12567,37 @@ Default GPU Device: /gpu:0
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[36]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>56250.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12596,15 +12627,21 @@ Default GPU Device: /gpu:0
 <span class="c1"># Batch Size</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1250</span>
 <span class="c1"># RNN Size</span>
-<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">512</span>
 <span class="c1"># Embedding Dimension Size</span>
-<span class="n">embed_dim</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">embed_dim</span> <span class="o">=</span> <span class="mi">400</span>
 <span class="c1"># Sequence Length</span>
 <span class="n">seq_length</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="c1"># Learning Rate</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="c1"># Show stats for every n number of batches</span>
-<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_training_examp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">get_batches</span><span class="p">(</span><span class="n">int_text</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="c1">#Makes sure that printing will</span>
+<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="n">num_training_examp</span> <span class="o">/</span> <span class="n">batch_size</span>                                <span class="c1">#be done regularly</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">DON&#39;T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">save_dir</span> <span class="o">=</span> <span class="s1">&#39;./save&#39;</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">DON&#39;T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE</span>
@@ -12728,66 +12765,20 @@ Default GPU Device: /gpu:0
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch   0 Batch    0/3   train_loss = 8.835
-Epoch   3 Batch    1/3   train_loss = 4.502
-Epoch   6 Batch    2/3   train_loss = 3.113
-Epoch  10 Batch    0/3   train_loss = 2.357
-Epoch  13 Batch    1/3   train_loss = 1.883
-Epoch  16 Batch    2/3   train_loss = 1.586
-Epoch  20 Batch    0/3   train_loss = 1.388
-Epoch  23 Batch    1/3   train_loss = 1.203
-Epoch  26 Batch    2/3   train_loss = 1.093
-Epoch  30 Batch    0/3   train_loss = 1.013
-Epoch  33 Batch    1/3   train_loss = 0.945
-Epoch  36 Batch    2/3   train_loss = 0.914
-Epoch  40 Batch    0/3   train_loss = 0.917
-Epoch  43 Batch    1/3   train_loss = 0.887
-Epoch  46 Batch    2/3   train_loss = 0.907
-Epoch  50 Batch    0/3   train_loss = 0.935
-Epoch  53 Batch    1/3   train_loss = 0.934
-Epoch  56 Batch    2/3   train_loss = 0.952
-Epoch  60 Batch    0/3   train_loss = 0.983
-Epoch  63 Batch    1/3   train_loss = 0.991
-Epoch  66 Batch    2/3   train_loss = 0.998
-Epoch  70 Batch    0/3   train_loss = 0.995
-Epoch  73 Batch    1/3   train_loss = 0.956
-Epoch  76 Batch    2/3   train_loss = 0.975
-Epoch  80 Batch    0/3   train_loss = 0.968
-Epoch  83 Batch    1/3   train_loss = 0.921
-Epoch  86 Batch    2/3   train_loss = 0.906
-Epoch  90 Batch    0/3   train_loss = 0.886
-Epoch  93 Batch    1/3   train_loss = 0.839
-Epoch  96 Batch    2/3   train_loss = 0.820
-Epoch 100 Batch    0/3   train_loss = 0.809
-Epoch 103 Batch    1/3   train_loss = 0.780
-Epoch 106 Batch    2/3   train_loss = 0.770
-Epoch 110 Batch    0/3   train_loss = 0.822
-Epoch 113 Batch    1/3   train_loss = 0.813
-Epoch 116 Batch    2/3   train_loss = 0.859
-Epoch 120 Batch    0/3   train_loss = 0.896
-Epoch 123 Batch    1/3   train_loss = 0.963
-Epoch 126 Batch    2/3   train_loss = 1.039
-Epoch 130 Batch    0/3   train_loss = 1.099
-Epoch 133 Batch    1/3   train_loss = 1.158
-Epoch 136 Batch    2/3   train_loss = 1.208
-Epoch 140 Batch    0/3   train_loss = 1.183
-Epoch 143 Batch    1/3   train_loss = 1.150
-Epoch 146 Batch    2/3   train_loss = 1.152
-Epoch 150 Batch    0/3   train_loss = 1.139
-Epoch 153 Batch    1/3   train_loss = 1.085
-Epoch 156 Batch    2/3   train_loss = 1.025
-Epoch 160 Batch    0/3   train_loss = 0.996
-Epoch 163 Batch    1/3   train_loss = 0.921
-Epoch 166 Batch    2/3   train_loss = 0.878
-Epoch 170 Batch    0/3   train_loss = 0.832
-Epoch 173 Batch    1/3   train_loss = 0.741
-Epoch 176 Batch    2/3   train_loss = 0.698
-Epoch 180 Batch    0/3   train_loss = 0.656
-Epoch 183 Batch    1/3   train_loss = 0.612
-Epoch 186 Batch    2/3   train_loss = 0.573
-Epoch 190 Batch    0/3   train_loss = 0.551
-Epoch 193 Batch    1/3   train_loss = 0.516
-Epoch 196 Batch    2/3   train_loss = 0.490
+<pre>Epoch   0 Batch    0/3   train_loss = 8.855
+Epoch  15 Batch    0/3   train_loss = 2.615
+Epoch  30 Batch    0/3   train_loss = 1.004
+Epoch  45 Batch    0/3   train_loss = 0.416
+Epoch  60 Batch    0/3   train_loss = 0.241
+Epoch  75 Batch    0/3   train_loss = 0.210
+Epoch  90 Batch    0/3   train_loss = 0.203
+Epoch 105 Batch    0/3   train_loss = 0.200
+Epoch 120 Batch    0/3   train_loss = 0.198
+Epoch 135 Batch    0/3   train_loss = 0.197
+Epoch 150 Batch    0/3   train_loss = 0.196
+Epoch 165 Batch    0/3   train_loss = 0.195
+Epoch 180 Batch    0/3   train_loss = 0.195
+Epoch 195 Batch    0/3   train_loss = 0.195
 Model Trained and Saved
 </pre>
 </div>
@@ -12941,9 +12932,7 @@ Model Trained and Saved
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Implement Function</span>
     <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
-    <span class="n">top_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">probs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">top_word_prob</span> <span class="o">=</span> <span class="n">int_to_vocab</span><span class="p">[</span><span class="n">top_prob</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">top_word_prob</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">int_to_vocab</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -13046,7 +13035,28 @@ Model Trained and Saved
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>moe_szyslak: fbi_agent: barf cameras deer scientific partner probably turkey fbi mount disappeared stole mis-statement the_edge: very first smile whee flat somebody youuu inserts missing lucky towed youuu pal partners askin&#39; alive coin fbi dough amanda shooting u ech schizophrenia original outstanding sing suits championship after isn&#39;t activity grow tail video pride rat studio learn allow dance glove other lurleen_lumpkin: chapstick statesmanlike glove catch broken: ugh richer crayola forbids hops doug: kent cameras gal donate speed pour took seen charges runaway worth empty turlet prompting mount spend represent figured espousing open-casket bee live fill inserts smells feeling grabbing wiggle lowers breakfast black swooning ruined sick smile pure uh-huh anger here&#39;s inserts buffet richard knocks ass watch offended tape pour twentieth cream askin&#39; many attractive_woman_#1: mirthless comes fixed -ry sec_agent_#2: military wildfever stock international awwww seymour donate amazing elect explaining confused falsetto remaining completing donate hobo fox given effects heads allow eyeball deserve write magazine 250 ihop jacksons brief dungeon askin&#39; toys inserts started woo read kazoo syndicate denver junkyard twin mixed cameras championship code everything mixed turkey made cameras understanding maude japanese season totally america fellow anyone homesick regulations salad enthusiasm fixed numeral volunteer agent mixed extinguishers glove ladies try christian treat
+<pre>moe_szyslak: hello? yeah, i&#39;d like to arrange for an escort please.
+moe_szyslak: oh, homer.
+homer_simpson: you dirty teen.
+lenny_leonard: tonight...
+homer_simpson:(touched) wow... someone smells stinky.(sniffing shirt) oh, it&#39;s just a book.
+marge_simpson: mmmm, danish.
+moe_szyslak: no, the time you was able to park.
+
+
+moe_szyslak: hey, homer, you wanna go bowling next sunday?
+homer_simpson: oh, i will.
+carl_carlson: and you could win your mom back by appealing to her feelings.
+homer_simpson: i don&#39;t have one of that.
+
+
+moe_szyslak:(realizing, to phone) i guess every father thinks his family, but i don&#39;t wanna go home and i&#39;m gonna carve my name and sweat are in this?
+moe_szyslak: sorry, homer.
+homer_simpson: well, that would explain the drop-off in play.
+lenny_leonard: i don&#39;t think he&#39;s here! nothin&#39;.
+
+
+homer_simpson:(tipsy) man, this website enabling baby is it&#39;s good.
 </pre>
 </div>
 </div>
